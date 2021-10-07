@@ -77,9 +77,16 @@ GEM
       xpath (~> 3.2)
     childprocess (3.0.0)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
+    e2mmap (0.1.0)
     erubi (1.10.0)
+    et-orbi (1.2.5)
+      tzinfo
     ffi (1.15.4)
+    fugit (1.5.2)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
     httparty (0.20.0)
@@ -109,9 +116,11 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.0)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-mini-profiler (2.3.3)
@@ -153,6 +162,8 @@ GEM
     redis (4.4.0)
     regexp_parser (2.1.1)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.0)
+      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -167,6 +178,17 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sidekiq (6.2.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-scheduler (3.1.0)
+      e2mmap
+      redis (>= 3, < 5)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      thwait
+      tilt (>= 1.4.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -177,6 +199,8 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.1.0)
+    thwait (0.2.0)
+      e2mmap
     tilt (2.0.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -214,12 +238,15 @@ DEPENDENCIES
   httparty
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
+  sidekiq
+  sidekiq-scheduler
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)

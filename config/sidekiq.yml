@@ -1,0 +1,4 @@
+:schedule:
+  refresh_coin:
+    every: 5s
+    class: RefreshCoin
