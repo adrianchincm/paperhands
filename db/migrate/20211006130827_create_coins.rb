@@ -1,7 +1,7 @@
 class CreateCoins < ActiveRecord::Migration[6.1]
   def change
     create_table :coins do |t|
-      t.string :coin_id, null: false, index: { unique: true }
+      t.string :coin_id, index: { unique: true }
       t.string :symbol
       t.string :name
       t.string :image
