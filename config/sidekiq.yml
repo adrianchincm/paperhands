@@ -1,3 +1,12 @@
+development:
+  :concurrency: 5
+production:
+  :concurrency: 10
+:queues:
+  - high
+  - default
+  - mailers
+
 :schedule:
   refresh_coin:
     every: 5s

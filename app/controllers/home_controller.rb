@@ -2,12 +2,13 @@ require "httparty"
 
 class HomeController < ApplicationController
   def index
-    refresh_coins
+    # refresh_coins
     @coins = Coin.all
   end
 
   private 
 
+  # leave it here just for debugging in the future
   def refresh_coins
     url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
     response = HTTParty.get(url)    
