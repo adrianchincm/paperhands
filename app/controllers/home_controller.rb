@@ -6,6 +6,11 @@ class HomeController < ApplicationController
     @coins = Coin.all
   end
 
+  def coins    
+    @coins = Coin.all    
+    render json: @coins
+  end
+
   private 
 
   # leave it here just for debugging in the future
