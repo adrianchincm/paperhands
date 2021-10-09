@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   def index
     # refresh_coins
     @coins = Coin.all
+    @coins.order!('market_cap DESC')        
+    @coins = @coins.first(100)
   end
 
   private 

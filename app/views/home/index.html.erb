@@ -30,42 +30,9 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <% @coins.each_with_index do |coin, index|%>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500"><%= index + 1 %></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">                    
-                    <div class="flex-shrink-0 h-10 w-10">
-                      <img class="h-10 w-10 rounded-full" src=<%= coin.image %> alt="">
-                    </div>
-                    <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-900">
-                          <%= coin.name %>
-                      </div>
-                      <div class="text-sm text-gray-500">
-                        <%= coin.symbol.upcase %>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900"><%= number_to_currency(coin.current_price) %></div>   
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-center">
-                  <div class="text-sm font-medium text-gray-900">
-                      <%= number_with_precision(coin.price_change_percentage_24h, precision: 2)%>%
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= number_to_currency(coin.total_volume) %>                  
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-500">
-                  <%= number_with_precision(coin.ath_change_percentage, precision: 2)%>%                  
-                </td>
-              </tr>
-            <% end %>
+           <div id="coins-container">                
+              <%= render @coins %>                
+           </div>
             
           </tbody>
         </table>
