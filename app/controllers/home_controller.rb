@@ -5,7 +5,11 @@ class HomeController < ApplicationController
     # refresh_coins
     @coins = Coin.all
     @coins.order!('market_cap DESC')        
-    @coins = @coins.first(100)
+    @coins = @coins.first(100)    
+  end
+
+  def test
+
   end
 
   private 

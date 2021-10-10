@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: '/sidekiq'
 
-  resources :coins
   get 'home/index'
+  get 'home/test'
   root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  mount ActionCable.server, at: '/cable'
 end

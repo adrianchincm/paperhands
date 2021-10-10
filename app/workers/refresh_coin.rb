@@ -17,5 +17,7 @@ class RefreshCoin
 
     Coin.upsert_all(price_hash_map, unique_by: :coin_id)    
     puts "Refreshed coins , coins last_updated : #{price_hash_map.first["last_updated"]}"    
+
+    ActionCable.server.broadcast "coin_update_channel", {coins: price_hash_map}
   end
 end
