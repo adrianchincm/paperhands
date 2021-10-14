@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_141239) do
+ActiveRecord::Schema.define(version: 2021_10_13_142715) do
 
   create_table "coins", force: :cascade do |t|
     t.string "coin_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_10_11_141239) do
     t.datetime "last_updated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+    t.bigint "block_time_in_minutes"
+    t.float "sentiment_votes_up_percentage"
+    t.float "sentiment_votes_down_percentage"
+    t.float "price_change_percentage_7d"
+    t.float "price_change_percentage_14d"
+    t.float "price_change_percentage_30d"
+    t.float "price_change_percentage_60d"
+    t.float "price_change_percentage_200d"
+    t.float "price_change_percentage_1y"
     t.index ["coin_id"], name: "index_coins_on_coin_id", unique: true
   end
 
