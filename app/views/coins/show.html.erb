@@ -8,12 +8,23 @@
     </div>
     <img class="mx-auto h-24 w-24 rounded-full" src=<%= @coin["image"]["large"] %> alt="">
     <p class="mt-4 text-base text-gray-700 md:text-lg">
-    <%= raw @coin["description"]["en"].truncate_words(300) %>    
-      <%# <%= raw @coin["description"]["en"] %> 
+      <%= raw @coin["description"]["en"].truncate_words(300) %>
     </p>
   </div>
 
-  <div>TEST/ PUT THE BUY SELL COMPONENT HERE</div>
+  <div>
+    
+    <div class="relative flex w-full flex-wrap items-stretch mb-3" x-data="{ input: '' }">
+      <span
+        class="z-10 h-full leading-snug font-normal text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+        <i class="fa fa-lock"></i>
+      </span>
+      <input name="test" type="text" placeholder="Placeholder" x-on:input="input=$event.target.value"
+        class="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:ring w-full pl-10" />
+        <div x-text="input * 2"></div>
+    </div>
+  </div>
+
   </div>
   <div>
   
