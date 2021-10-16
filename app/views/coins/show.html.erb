@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'coin' %>
+<button id="greet-user-button">HEY</button>
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="flex">
   <div class="max-w-xl mb-10 sm:text-center lg:max-w-2xl md:mb-12">
@@ -14,14 +16,37 @@
 
   <div>
     
-    <div class="relative flex w-full flex-wrap items-stretch mb-3" x-data="{ input: '' }">
-      <span
-        class="z-10 h-full leading-snug font-normal text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
-        <i class="fa fa-lock"></i>
-      </span>
-      <input name="test" type="text" placeholder="Placeholder" x-on:input="input=$event.target.value"
-        class="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white rounded text-sm border border-gray-400 outline-none focus:outline-none focus:ring w-full pl-10" />
-        <div x-text="input * 2"></div>
+    <div class="relative flex w-full flex-wrap items-stretch mb-3" x-data="{ input: '',
+                                                                              coinValue: '',
+                                                                              setInput(event) {
+                                                                              this.coinValue = (event.target.value / <%= j @coin["market_data"]["current_price"]["usd"] %>).toFixed(8);
+                                                                            }, }">
+              
+      
+        <div>          
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span class="text-gray-500 sm:text-sm">
+                $
+              </span>
+            </div>
+            <input id="usdInput" x-on:input="setInput($event)" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+            <div class="absolute inset-y-0 right-0 flex items-center">
+              <div class="mr-4 text-gray-500">USD</div>
+            </div>
+          </div>
+        </div>
+
+          <div>          
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">                
+              </div>
+              <input id="coinInput" x-model="coinValue" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+              <div class="absolute inset-y-0 right-0 flex items-center">
+                <div class="mr-4 text-gray-500">BTC</div>
+              </div>
+            </div>
+          </div>
     </div>
   </div>
 
