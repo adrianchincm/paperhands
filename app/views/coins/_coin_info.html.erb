@@ -1,79 +1,62 @@
 <div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
-      <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
-        <h6 class="mb-2 font-semibold leading-5">Coin Info</h6>
-          <div class="text-sm text-gray-600">Total Supply</div>
-          <div><%= @coin["market_data"]["total_supply"]%></div>
-
-          <div class="text-sm text-gray-600 mt-2">Max Supply</div>
-          <div><%= @coin["market_data"]["max_supply"]%></div>
-
-          <div class="text-sm text-gray-600 mt-2">Market Cap Rank</div>
-          <div>#<%= @coin["market_data"]["market_cap_rank"]%></div>
-
-          <div class="text-sm text-gray-600 mt-2">Market Cap</div>
-          <div><%= number_to_currency @coin["market_data"]["market_cap"]["usd"]%></div>
-
-          <div class="text-sm text-gray-600 mt-2">Total Volume</div>
-          <div><%= number_to_currency @coin["market_data"]["total_volume"]["usd"]%></div>
-      </div>
+  <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
+    <h6 class="mb-2 font-semibold leading-5">Coin Info</h6>
+    <div class="text-sm text-gray-600">Total Supply</div>
+    <div><%= @coin["market_data"]["total_supply"]%></div>
+    <div class="text-sm text-gray-600 mt-2">Max Supply</div>
+    <div><%= @coin["market_data"]["max_supply"]%></div>
+    <div class="text-sm text-gray-600 mt-2">Market Cap Rank</div>
+    <div>#<%= @coin["market_data"]["market_cap_rank"]%></div>
+    <div class="text-sm text-gray-600 mt-2">Market Cap</div>
+    <div><%= number_to_currency @coin["market_data"]["market_cap"]["usd"]%></div>
+    <div class="text-sm text-gray-600 mt-2">Total Volume</div>
+    <div><%= number_to_currency @coin["market_data"]["total_volume"]["usd"]%></div>
+  </div>
+</div>
+<div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
+  <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
+    <h6 class="mb-2 font-semibold leading-5">All Time High/Low Info</h6>
+    <div class="text-sm text-gray-600">All Time High</div>
+    <div><%= number_to_currency @coin["market_data"]["ath"]["usd"]%></div>
+    <div class="text-sm text-gray-600 mt-2">All Time High Date</div>
+    <div><%= DateTime.parse(@coin["market_data"]["ath_date"]["usd"]).strftime("%d/%m/%Y")%></div>
+    <div class="text-sm text-gray-600 mt-2">All Time High Change %</div>
+    <div><%= @coin["market_data"]["ath_change_percentage"]["usd"]%> %</div>
+    <div class="text-sm text-gray-600 mt-2">All Time Low</div>
+    <div><%= number_to_currency @coin["market_data"]["atl"]["usd"]%></div>
+    <div class="text-sm text-gray-600 mt-2">All Time Low Date</div>
+    <div><%= DateTime.parse(@coin["market_data"]["atl_date"]["usd"]).strftime("%d/%m/%Y")%></div>
+    <div class="text-sm text-gray-600 mt-2">All Time Low Change %</div>
+    <div><%= @coin["market_data"]["atl_change_percentage"]["usd"]%> %</div>
+  </div>
+</div>
+<div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
+  <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
+    <h6 class="mb-2 font-semibold leading-5">Historical Price Changes</h6>
+    <div class="text-sm text-gray-600">7-day change</div>
+    <div><%= @coin["market_data"]["price_change_percentage_7d"]%>%</div>
+    <div class="text-sm text-gray-600 mt-2">14-day change</div>
+    <div><%= @coin["market_data"]["price_change_percentage_14d"]%>%</div>
+    <div class="text-sm text-gray-600 mt-2">30-day change</div>
+    <div><%= @coin["market_data"]["price_change_percentage_30d"]%>%</div>
+    <div class="text-sm text-gray-600 mt-2">60-day change</div>
+    <div><%= @coin["market_data"]["price_change_percentage_60d"]%>%</div>
+    <div class="text-sm text-gray-600 mt-2">200-day change</div>
+    <div><%= @coin["market_data"]["price_change_percentage_200d"]%>%</div>
+    <div class="text-sm text-gray-600 mt-2">1-year change</div>
+    <div><%= @coin["market_data"]["price_change_percentage_1y"]%>%</div>
+  </div>
+</div>
+<div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
+  <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
+    <h6 class="mb-2 font-semibold leading-5">Sentiment</h6>
+    <div class="flex">
+      <img src="/assets/bull-market.png" width="150" height="150" alt="Edit Entry" />
+      <div class="mx-auto my-auto font-semibold text-xl"><%= @coin["sentiment_votes_up_percentage"]%>%</div>
     </div>
-    <div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
-      <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
-        <h6 class="mb-2 font-semibold leading-5">All Time High/Low Info</h6>
-
-        <div class="text-sm text-gray-600">All Time High</div>
-          <div><%= number_to_currency @coin["market_data"]["ath"]["usd"]%></div>
-
-          <div class="text-sm text-gray-600 mt-2">All Time High Date</div>
-          <div><%= DateTime.parse(@coin["market_data"]["ath_date"]["usd"]).strftime("%d/%m/%Y")%></div>
-
-          <div class="text-sm text-gray-600 mt-2">All Time High Change %</div>
-          <div><%= @coin["market_data"]["ath_change_percentage"]["usd"]%> %</div>
-
-          <div class="text-sm text-gray-600 mt-2">All Time Low</div>
-          <div><%= number_to_currency @coin["market_data"]["atl"]["usd"]%></div>
-
-          <div class="text-sm text-gray-600 mt-2">All Time Low Date</div>
-          <div><%= DateTime.parse(@coin["market_data"]["atl_date"]["usd"]).strftime("%d/%m/%Y")%></div>
-
-          <div class="text-sm text-gray-600 mt-2">All Time Low Change %</div>
-          <div><%= @coin["market_data"]["atl_change_percentage"]["usd"]%> %</div>
-      </div>
+    <div class="flex">
+      <img src="/assets/bear-market.png" width="150" height="150" alt="Edit Entry" />
+      <div class="mx-auto my-auto font-semibold text-xl"><%= @coin["sentiment_votes_down_percentage"]%>%</div>
     </div>
-    <div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
-      <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
-        <h6 class="mb-2 font-semibold leading-5">Historical Price Changes</h6>    
-          <div class="text-sm text-gray-600">7-day change</div>
-          <div><%= @coin["market_data"]["price_change_percentage_7d"]%>%</div>
-
-          <div class="text-sm text-gray-600 mt-2">14-day change</div>
-          <div><%= @coin["market_data"]["price_change_percentage_14d"]%>%</div>
-
-          <div class="text-sm text-gray-600 mt-2">30-day change</div>
-          <div><%= @coin["market_data"]["price_change_percentage_30d"]%>%</div>
-
-          <div class="text-sm text-gray-600 mt-2">60-day change</div>
-          <div><%= @coin["market_data"]["price_change_percentage_60d"]%>%</div>
-
-          <div class="text-sm text-gray-600 mt-2">200-day change</div>
-          <div><%= @coin["market_data"]["price_change_percentage_200d"]%>%</div>
-
-          <div class="text-sm text-gray-600 mt-2">1-year change</div>
-          <div><%= @coin["market_data"]["price_change_percentage_1y"]%>%</div>
-      </div>
-    </div>
-    <div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
-      <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
-        <h6 class="mb-2 font-semibold leading-5">Sentiment</h6>
-        <div class="flex">          
-          <img src="/assets/bull-market.png" width="150" height="150" alt="Edit Entry" />
-          <div class="mx-auto my-auto font-semibold text-xl"><%= @coin["sentiment_votes_up_percentage"]%>%</div>
-        </div>
-
-        <div class="flex">          
-          <img src="/assets/bear-market.png" width="150" height="150" alt="Edit Entry" />
-          <div class="mx-auto my-auto font-semibold text-xl"><%= @coin["sentiment_votes_down_percentage"]%>%</div>
-        </div>
-        
-      </div>
-    </div>
+  </div>
+</div>

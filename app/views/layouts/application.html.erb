@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script defer src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
   </head>
-
   <body>
-  <div>
-  <!-- This example requires Tailwind CSS v2.0+ -->
-<div>
-  
-</div>
-    <%= render 'navigation/navigation' %>
-    <%= render 'layouts/messages' %>
-    <%# <%= render 'components/header', obj: @category %> 
-    <%= yield %>
-  </body>
-</html>
+    <div>
+      <!-- This example requires Tailwind CSS v2.0+ -->
+      <div>
+      </div>
+      <%= render 'navigation/navigation' %>
+      <%= render 'layouts/messages' %>
+      <%# <%= render 'components/header', obj: @category %>
+      <%= yield %>
+    </body>
+  </html>
