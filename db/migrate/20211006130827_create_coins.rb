@@ -24,7 +24,7 @@ class CreateCoins < ActiveRecord::Migration[6.1]
       t.datetime :ath_date
       t.float :atl
       t.float :atl_change_percentage
-      t.datetime :atl_date      
+      t.datetime :atl_date
       t.datetime :last_updated
 
       t.timestamps default: -> { 'CURRENT_TIMESTAMP' }

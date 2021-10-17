@@ -1,3 +1,3 @@
-$(document).ready(function() {
-    $('input#coinInput').prop('disabled', true);
-  });
+$(document).ready(function () {
+  $("input#coinInput").prop("disabled", true);
+});

@@ -1,8 +1,8 @@
 module.exports = {
   purge: [
-    './app/**/*.html.erb',
-    './app/helpers/**/*.rb',
-    './app/javascript/**/**.js',    
+    "./app/**/*.html.erb",
+    "./app/helpers/**/*.rb",
+    "./app/javascript/**/**.js",
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -12,8 +12,8 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
   ],
-}
+};
