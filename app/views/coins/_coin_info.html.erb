@@ -50,12 +50,12 @@
 <div class="duration-300 transform bg-white border-l-4 border-deep-purple-accent-400 hover:-translate-y-2">
   <div class="h-full p-5 border border-l-0 rounded-r shadow-sm">
     <h6 class="mb-2 font-semibold leading-5">Sentiment</h6>
-    <div class="flex">
-      <img src="/assets/bull-market.png" width="150" height="150" alt="Edit Entry" />
+    <div class="flex">      
+      <%= image_tag 'bull-market.png', width: '150', height: '150' %>
       <div class="mx-auto my-auto font-semibold text-xl"><%= @coin["sentiment_votes_up_percentage"]%>%</div>
     </div>
-    <div class="flex">
-      <img src="/assets/bear-market.png" width="150" height="150" alt="Edit Entry" />
+    <div class="flex">      
+      <%= image_tag 'bear-market.png', width: '150', height: '150' %>
       <div class="mx-auto my-auto font-semibold text-xl"><%= @coin["sentiment_votes_down_percentage"]%>%</div>
     </div>
   </div>
