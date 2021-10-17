@@ -1,8 +1,7 @@
 require 'httparty'
 
 class CoinsController < ApplicationController
-  def show
-    puts 'TESTING TESTING SHOW'
+  def show    
     get_coin_details
   end
 
@@ -21,8 +20,7 @@ class CoinsController < ApplicationController
     market_data = @coin['market_data']
 
     Coin.update(
-      params[:id],
-      description: @coin['description']['en'],
+      params[:id],      
       block_time_in_minutes: @coin['block_time_in_minutes'],
       sentiment_votes_up_percentage: @coin['sentiment_votes_up_percentage'],
       sentiment_votes_down_percentage: @coin['sentiment_votes_down_percentage'],
