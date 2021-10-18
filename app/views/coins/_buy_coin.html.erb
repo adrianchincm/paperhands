@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div class="mx-auto mt-24 mb-12" x-show="orderSubmitted">
+  <div class="mx-auto mt-24 mb-12" x-show="orderSubmitted" x-transition>
     <div class="text-xl font-semibold">Order submitted successfully!</div>
     <div class="text-center mx-auto">Go to <%= link_to "Orders", orders_path, class: 'text-indigo-600' %> page</div>
   </div>
