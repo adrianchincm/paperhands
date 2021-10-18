@@ -52,7 +52,7 @@
         </div>
         <input id="coinInput" x-model="coinValue" x-bind:disabled="true" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
         <div class="absolute inset-y-0 right-0 flex items-center">
-          <div class="mr-4 text-gray-500">BTC</div>
+          <div class="mr-4 text-gray-500"><%= @coin["symbol"].upcase %></div>
         </div>
       </div>
     </div>
@@ -70,58 +70,59 @@
     </div>
   </div>
 
-  <div class="mx-auto text-xl font-semibold mt-24 mb-12" x-show="orderSubmitted">
-    Order submitted successfully!
+  <div class="mx-auto mt-24 mb-12" x-show="orderSubmitted">
+    <div class="text-xl font-semibold">Order submitted successfully!</div>
+    <div class="text-center mx-auto">Go to <%= link_to "Orders", orders_path, class: 'text-indigo-600' %> page</div>
   </div>
-
+    
   <div class="mt-12 mx-auto grid border divide-y rounded lg:col-span-3 lg:grid-cols-2 md:grid-cols-1 lg:divide-y-0 md:divide-x">
     <div class="flex flex-col justify-between p-10">
       <div>
         <p class="text-lg font-semibold text-gray-800 sm:text-base">
-          Funds Raised
+          Current Price
         </p>
         <p class="text-2xl font-bold text-deep-purple-accent-400 sm:text-xl">
-          $84 000 000
+          <%= number_to_currency @coin["market_data"]["current_price"]["usd"] %>
         </p>
       </div>
       <div>
-        <p class="text-lg font-semibold text-gray-800 sm:text-base">
-          Products
+        <p class="text-lg font-semibold text-gray-800 sm:text-base mt-2">
+          24h High
         </p>
         <p class="text-2xl font-bold text-deep-purple-accent-400 sm:text-xl">
-          52
+          <%= number_to_currency @coin["market_data"]["high_24h"]["usd"] %>
         </p>
       </div>
       <div>
-        <p class="text-lg font-semibold text-gray-800 sm:text-base">
-          Downloads
+        <p class="text-lg font-semibold text-gray-800 sm:text-base mt-2">
+          24h Low
         </p>
         <p class="text-2xl font-bold text-deep-purple-accent-400 sm:text-xl">
-          186M
+          <%= number_to_currency @coin["market_data"]["low_24h"]["usd"] %>
         </p>
       </div>
     </div>
     <div class="flex flex-col justify-between p-10">
       <div>
-        <p class="text-lg font-semibold text-gray-800 sm:text-base">Users</p>
+        <p class="text-lg font-semibold text-gray-800 sm:text-base">Price change 24h</p>
         <p class="text-2xl font-bold text-deep-purple-accent-400 sm:text-xl">
-          86K
+          <%= number_to_currency @coin["market_data"]["price_change_24h"] %>
         </p>
       </div>
       <div>
         <p class="text-lg font-semibold text-gray-800 sm:text-base">
-          Installations
+          Price change 24h (%)
         </p>
         <p class="text-2xl font-bold text-deep-purple-accent-400 sm:text-xl">
-          917 000
+          <%= @coin["market_data"]["price_change_percentage_24h"] %>%
         </p>
       </div>
       <div>
         <p class="text-lg font-semibold text-gray-800 sm:text-base">
-          Subscribers
+          Homepage
         </p>
-        <p class="text-2xl font-bold text-deep-purple-accent-400 sm:text-xl">
-          213K
+        <p class="text-lg font-bold text-deep-purple-accent-400 sm:text-lg">
+          <a class="text-indigo-600" href="<%= @coin["links"]["homepage"][0] %>"><%= @coin["name"]%>'s homepage</a>          
         </p>
       </div>
     </div>
