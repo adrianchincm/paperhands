@@ -4,7 +4,9 @@ Rails
   .application
   .routes
   .draw do
-    devise_for :users
+    scope :api, defaults: { format: :html } do
+      devise_for :users
+    end
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       ActiveSupport::SecurityUtils.secure_compare(
         ::Digest::SHA256.hexdigest(username),
@@ -22,6 +24,7 @@ Rails
     mount Sidekiq::Web, at: '/sidekiq'
 
     resources :coins
+    resources :orders
     get 'home/index'
     root to: 'home#index'
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

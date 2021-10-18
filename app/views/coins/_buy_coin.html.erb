@@ -6,10 +6,33 @@
 <div class="flex w-full flex-wrap items-stretch mb-3" x-data="
     { input: '',
       coinValue: '',
+      orderSubmitted: false,      
       setInput(event) {
         this.coinValue = (event.target.value / <%= j @coin["market_data"]["current_price"]["usd"] %>).toFixed(8);
-    }, }">
-  <div class="mt-12 mx-auto">
+      },
+      async submitBuyOrder(type) {
+        fetch('/orders', {
+         method: 'POST',
+         headers: {
+          'Content-Type': 'application/json'         
+         },
+         body: JSON.stringify({
+           usdInput: this.input,
+           coinInput: this.coinValue,
+           userId: <%= j current_user.id %>,
+           coinId: <%= j params[:id] %>,
+           type,
+         })
+        }).then(response => response.json())        
+  .then((result) => {
+    this.orderSubmitted = true
+  console.log(result)
+  }).catch(() => {
+  console.log('something went wrong!')
+  })},
+  }">
+  <div class="mt-12 mx-auto" x-show="orderSubmitted === false">
+    
     <div>
       <div class="mt-1 relative rounded-md shadow-sm">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -17,7 +40,7 @@
             $
           </span>
         </div>
-        <input id="usdInput" x-on:input="setInput($event)" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+        <input id="usdInput" x-on:input="setInput($event)" x-model="input" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
         <div class="absolute inset-y-0 right-0 flex items-center">
           <div class="mr-4 text-gray-500">USD</div>
         </div>
@@ -27,7 +50,7 @@
       <div class="mt-1 relative rounded-md shadow-sm">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         </div>
-        <input id="coinInput" x-model="coinValue" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+        <input id="coinInput" x-model="coinValue" x-bind:disabled="true" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
         <div class="absolute inset-y-0 right-0 flex items-center">
           <div class="mr-4 text-gray-500">BTC</div>
         </div>
@@ -35,17 +58,22 @@
     </div>
     <div class="flex space-x-4 mt-4">
       <div class="rounded-md shadow">
-        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-lg md:px-10">
+        <button @click="submitBuyOrder('BUY')" id="buyButton" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-lg md:px-10">
           Buy
-        </a>
+        </button>
       </div>
       <div class="rounded-md shadow">
-        <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-2 md:text-lg md:px-10">
+        <button @click="submitBuyOrder('SELL')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-2 md:text-lg md:px-10">
           Sell
-        </a>
+        </button>
       </div>
     </div>
   </div>
+
+  <div class="mx-auto text-xl font-semibold mt-24 mb-12" x-show="orderSubmitted">
+    Order submitted successfully!
+  </div>
+
   <div class="mt-12 mx-auto grid border divide-y rounded lg:col-span-3 lg:grid-cols-2 md:grid-cols-1 lg:divide-y-0 md:divide-x">
     <div class="flex flex-col justify-between p-10">
       <div>
@@ -97,5 +125,5 @@
         </p>
       </div>
     </div>
-  </div>
+  </div>  
 </div>
