@@ -9,7 +9,9 @@ class PortfoliosController < ApplicationController
             @total_value = @total_value + (portfolio.total_quantity * portfolio.coin.current_price)
             @total_profit = @total_profit + (portfolio.total_quantity * portfolio.coin.current_price) - portfolio.total_cost
             @total_profit_percentage = ((portfolio.coin.current_price - portfolio.average_price)/portfolio.coin.current_price) * 100
-        }                        
+        }
+        # puts "PORTFOLIO : #{@portfolios[0].coin.name}"
+                
     end
 
 end

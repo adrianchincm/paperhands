@@ -1,6 +1,4 @@
-class OrdersController < ApplicationController
-    skip_before_action :verify_authenticity_token
-    
+class OrdersController < ApplicationController    
     def index
 
     end
