@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_133401) do
+ActiveRecord::Schema.define(version: 2021_10_19_040503) do
 
   create_table "coins", force: :cascade do |t|
     t.string "coin_id"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2021_10_17_133401) do
     t.float "price", null: false
     t.decimal "quantity", null: false
     t.string "order_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "coin_id"
+    t.float "total_quantity"
+    t.float "total_cost"
+    t.float "average_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

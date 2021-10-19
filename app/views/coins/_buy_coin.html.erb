@@ -6,10 +6,11 @@
 <div class="flex w-full flex-wrap items-stretch mb-3" x-data="
     { input: '',
       coinValue: '',
-      orderSubmitted: false,      
+      orderSubmitted: false,
+      errorMessage: '',
       setInput(event) {
         this.coinValue = (event.target.value / <%= j @coin["market_data"]["current_price"]["usd"] %>).toFixed(8);
-      },
+      },      
       async submitBuyOrder(type) {
         fetch('/orders', {
          method: 'POST',
@@ -25,10 +26,13 @@
          })
         }).then(response => response.json())        
   .then((result) => {
-    this.orderSubmitted = true
-  console.log(result)
-  }).catch(() => {
-  console.log('something went wrong!')
+    if (result.error) {
+      this.errorMessage = result.error
+    } else {
+      this.orderSubmitted = true
+    }    
+  }).catch((error) => {
+    console.log(error)
   })},
   }">
   <div class="mt-12 mx-auto" x-show="orderSubmitted === false">
@@ -67,8 +71,10 @@
           Sell
         </button>
       </div>
-    </div>
+    </div>    
   </div>
+
+  <div class="mx-auto text-red-600 mt-2" x-text="errorMessage" x-show="orderSubmitted === false && errorMessage.length > 0"></div>
 
   <div class="mx-auto mt-24 mb-12" x-show="orderSubmitted" x-transition>
     <div class="text-xl font-semibold">Order submitted successfully!</div>
