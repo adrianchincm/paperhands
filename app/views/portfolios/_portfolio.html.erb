@@ -1,0 +1,34 @@
+<tr>
+    <td class="px-4 py-4 whitespace-nowrap">
+        <div class="text-lg"><%= portfolio.coin.name %></div>
+    </td>
+    
+    <td class="px-4 py-4 whitespace-nowrap">
+        <div class="text-lg"><%= number_to_currency portfolio.coin.current_price %></div>
+    </td>
+
+    <td class="px-4 py-4 whitespace-nowrap">
+        <div class="text-lg"><%= number_with_precision(portfolio.coin.price_change_percentage_24h, precision: 2) %>%</div>
+    </td>
+    
+    <td class="px-4 py-4 whitespace-nowrap">
+        <div class="text-lg"><%= number_to_currency portfolio.coin.total_volume %></div>
+    </td>
+
+    <td class="px-4 py-4 whitespace-nowrap">
+        <div>
+            <div class="text-lg text-blue-600"><%= number_to_currency portfolio.total_quantity * portfolio.coin.current_price %>
+                <span class="text-gray-500"><%= number_with_precision(((portfolio.total_quantity * portfolio.coin.current_price)/@total_value) * 100, precision: 2) %>%</span>
+            </div>
+            <div class="text-lg"><%= portfolio.total_quantity %> <%= portfolio.coin.symbol.upcase %></div>
+        </div>        
+    </td>
+
+    <td class="px-4 py-4 whitespace-nowrap">
+        <div>
+            <div class="text-lg text-blue-600"><%= number_to_currency (portfolio.total_quantity * portfolio.coin.current_price) - portfolio.total_cost %></div>
+            <div class="text-lg"><%= number_with_precision(((portfolio.coin.current_price - portfolio.average_price)/portfolio.coin.current_price) * 100, precision: 2) %>%</div>
+        </div>        
+    </td>
+    
+</tr>

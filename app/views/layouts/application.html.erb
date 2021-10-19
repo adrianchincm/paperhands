@@ -11,13 +11,11 @@
     <script defer src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
   </head>
   <body>
-    <div>
-      <!-- This example requires Tailwind CSS v2.0+ -->
+    <div>      
       <div>
       </div>
       <%= render 'navigation/navigation' %>
-      <%= render 'layouts/messages' %>
-      <%# <%= render 'components/header', obj: @category %>
+      <%= render 'layouts/messages' %>      
       <%= yield %>
     </body>
   </html>

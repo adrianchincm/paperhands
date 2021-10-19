@@ -25,6 +25,7 @@ Rails
 
     resources :coins
     resources :orders
+    get 'portfolio', to: 'portfolios#index'
     get 'home/index'
     root to: 'home#index'
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
