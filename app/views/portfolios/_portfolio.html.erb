@@ -1,6 +1,10 @@
 <tr>
     <td class="px-4 py-4 whitespace-nowrap">
-        <div class="text-lg"><%= portfolio.coin.name %></div>
+        <div class="text-lg text-indigo-600 hover:underline">
+            <%= link_to coin_path(portfolio.coin) do %>
+                <%= portfolio.coin.name %>
+            <% end %>
+        </div>
     </td>
     
     <td class="px-4 py-4 whitespace-nowrap">
