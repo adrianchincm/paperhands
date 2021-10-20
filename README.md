@@ -11,6 +11,10 @@ For the time being, do try with this test account as its still WIP to full featu
 Email : `test@test.com`  
 Password : `password`
 
+Current tabs that are working : 
+- Home
+- Portfolio
+
 # Features
 ---
 1. Users can view top 100 crypto currencies - **DONE**  
