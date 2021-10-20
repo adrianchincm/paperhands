@@ -1,7 +1,8 @@
-# Paperhands
+# Paperhands *(Work in progress)*  
 ![paperhand_logo](https://i.ibb.co/hX7vbCW/paperhands-removebg-preview.png)  
-(Work in progress)  
-Paperhands is an paper account exchange where you can buy and sell cryoptocurrencies, and track your portfolio 
+
+Paperhands is an paper account exchange where you can buy and sell cryoptocurrencies, and track your portfolio!  
+*Also my first ruby on rails project*
 ---
 
 Give it a try at : https://rocky-eyrie-27317.herokuapp.com/   
