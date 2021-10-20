@@ -1,24 +1,19 @@
-# README
+# Paperhands
+![paperhand_logo](https://i.ibb.co/hX7vbCW/paperhands-removebg-preview.png)  
+(Work in progress)  
+Paperhands is an paper account exchange where you can buy and sell cryoptocurrencies, and track your portfolio 
+---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Give it a try at : https://rocky-eyrie-27317.herokuapp.com/   
 
-Things you may want to cover:
+For the time being, do try with this test account as its still WIP to full featured release :   
+Email : `test@test.com`  
+Password : `password`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Features
+---
+1. Users can view top 100 crypto currencies - **DONE**  
+2. Users can sign in/sign up - **DONE**  
+3. Users can buy/sell crypto - **PARTIALLY DONE**  
+4. Users can view their portfolio - **DONE**  
+5. Users can view their recent transactions **PENDING**
