@@ -19,3 +19,4 @@ Current tabs/features that are working :
 3. Users can buy/sell crypto - **DONE**  
 4. Users can view their portfolio - **DONE**  
 5. Users can view their recent transactions **PENDING**
+5. Users can view the leaderboard **PENDING**
