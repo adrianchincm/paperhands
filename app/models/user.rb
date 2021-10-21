@@ -11,8 +11,6 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
-  
-
   private
 
   def add_cash_balance
