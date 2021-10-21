@@ -1,13 +1,15 @@
-<div class="mx-auto text-center">
-  <div class="max-w-lg mb-4 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl ">Current position</div>
-  <div class="text-base text-blue-700 md:text-lg">$61,500.92</div>
-  <div class="text-base text-gray-700 md:text-lg">1.0014324 BTC</div>
-</div>
-<div class="flex w-full flex-wrap items-stretch mb-3" x-data="
+<% if current_user %>
+  <div class="mx-auto text-center">
+    <div class="max-w-lg mb-4 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl ">Current position</div>
+    <div class="text-base text-blue-700 md:text-lg">$61,500.92</div>
+    <div class="text-base text-gray-700 md:text-lg">1.0014324 BTC</div>
+  </div>
+<% end %>
+<div class="flex w-full flex-wrap items-stretch mb-3" x-data="{orderSubmitted: false, errorMessage: '',}">
+  <% if current_user %>
+    <div class="mt-12 mx-auto" x-show="orderSubmitted === false"  x-data="
     { input: '',
-      coinValue: '',
-      orderSubmitted: false,
-      errorMessage: '',
+      coinValue: '',            
       setInput(event) {
         this.coinValue = (event.target.value / <%= j @coin["market_data"]["current_price"]["usd"] %>).toFixed(8);
       },      
@@ -20,60 +22,60 @@
          body: JSON.stringify({
            usdInput: this.input,
            coinInput: this.coinValue,
+           coinId: <%= j params[:id] %>, 
            userId: <%= j current_user.id %>,
-           coinId: <%= j params[:id] %>,
            type,
          })
         }).then(response => response.json())        
-  .then((result) => {
-  if (result.error) {
-  this.errorMessage = result.error
-  } else {
-  this.orderSubmitted = true
-  }    
-  }).catch((error) => {
-  console.log(error)
-  })},
-  }">
-  <div class="mt-12 mx-auto" x-show="orderSubmitted === false">
-    <div>
-      <div class="mt-1 relative rounded-md shadow-sm">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <span class="text-gray-500 sm:text-sm">
-            $
-          </span>
+      .then((result) => {
+      if (result.error) {
+      this.errorMessage = result.error
+      } else {
+      this.orderSubmitted = true
+      }    
+      }).catch((error) => {
+      console.log(error)
+      })},
+      }"> 
+      <div>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm">
+              $
+            </span>
+          </div>
+          <input id="usdInput" x-on:input="setInput($event)" x-model="input" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+          <div class="absolute inset-y-0 right-0 flex items-center">
+            <div class="mr-4 text-gray-500">USD</div>
+          </div>
         </div>
-        <input id="usdInput" x-on:input="setInput($event)" x-model="input" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
-        <div class="absolute inset-y-0 right-0 flex items-center">
-          <div class="mr-4 text-gray-500">USD</div>
+      </div>
+      <div class="mt-4">
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          </div>
+          <input id="coinInput" x-model="coinValue" x-bind:disabled="true" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+          <div class="absolute inset-y-0 right-0 flex items-center">
+            <div class="mr-4 text-gray-500"><%= @coin["symbol"].upcase %></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex space-x-4 mt-4">
+        <div class="rounded-md shadow">
+          <button @click="submitBuyOrder('BUY')" id="buyButton" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-lg md:px-10">
+            Buy
+          </button>
+        </div>
+        <div class="rounded-md shadow">
+          <button @click="submitBuyOrder('SELL')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-2 md:text-lg md:px-10">
+            Sell
+          </button>
         </div>
       </div>
     </div>
-    <div class="mt-4">
-      <div class="mt-1 relative rounded-md shadow-sm">
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        </div>
-        <input id="coinInput" x-model="coinValue" x-bind:disabled="true" type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
-        <div class="absolute inset-y-0 right-0 flex items-center">
-          <div class="mr-4 text-gray-500"><%= @coin["symbol"].upcase %></div>
-        </div>
-      </div>
-    </div>
-    <div class="flex space-x-4 mt-4">
-      <div class="rounded-md shadow">
-        <button @click="submitBuyOrder('BUY')" id="buyButton" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-lg md:px-10">
-          Buy
-        </button>
-      </div>
-      <div class="rounded-md shadow">
-        <button @click="submitBuyOrder('SELL')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-2 md:text-lg md:px-10">
-          Sell
-        </button>
-      </div>
-    </div>
-  </div>
+  <% end %>
   <div class="mx-auto text-red-600 mt-2" x-text="errorMessage" x-show="orderSubmitted === false && errorMessage.length > 0"></div>
-  <div class="mx-auto mt-24 mb-12" x-show="orderSubmitted" x-transition>
+  <div class="mx-auto mt-24 mb-12" x-show="orderSubmitted === true" x-transition>
     <div class="text-xl font-semibold">Order submitted successfully!</div>
     <div class="text-center mx-auto">Go to <%= link_to "Orders", orders_path, class: 'text-indigo-600' %> page</div>
   </div>

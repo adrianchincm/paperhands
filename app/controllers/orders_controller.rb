@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
         end    
         
         new_order = Order.create(
-            user_id: params[:userId],
+            user_id: userId,
             coin_id: coinId,
             price: params[:usdInput],
             quantity: params[:coinInput],
