@@ -1,11 +1,16 @@
 require 'httparty'
 
 class CoinsController < ApplicationController
-  def show    
+  def show
+    get_current_holdings
     get_coin_details    
   end
 
   private
+
+  def get_current_holdings
+    @portfolio = Portfolio.find_by(user_id: current_user.id, coin_id: params[:id])
+  end
 
   def get_coin_details
     coin = Coin.find(params[:id])

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save :add_cash_balance
+  before_create :add_cash_balance
   has_many :orders, dependent: :destroy
   has_many :portfolios, dependent: :destroy  
 
