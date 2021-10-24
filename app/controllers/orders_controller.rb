@@ -1,6 +1,14 @@
 class OrdersController < ApplicationController    
     def index
-
+        @orders_count = Order.where(user_id: current_user.id).count
+        @last_week_orders = Order.where(user_id: current_user.id, created_at: 1.week.ago..)
+        @two_weeks_ago_count = Order.where(user_id: current_user.id, created_at: 1.week.ago..2.week.ago).count
+        @today_orders = Order.where(user_id: current_user.id, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+        @today_buy_orders = get_buy_orders(@today_orders)
+        @today_sell_orders = get_sell_orders(@today_orders)
+        get_buy_order_percentage
+        puts "Last week order count : #{@last_week_orders.count}"
+        
     end
 
     def create
@@ -90,5 +98,44 @@ class OrdersController < ApplicationController
         portfolio.total_cost = portfolio.total_cost - new_order.price
         portfolio.average_price = portfolio.total_cost / portfolio.total_quantity        
         portfolio.save
+    end
+
+    def get_buy_orders(today_orders)
+        total = 0
+        today_orders.each do |order|
+            total += 1 if order.order_type == "BUY"
+        end
+        total
+    end
+
+    def get_sell_orders(today_orders)
+        total = 0
+        today_orders.each do |order|
+            total += 1 if order.order_type == "SELL"
+        end
+        total
+    end
+
+    def get_buy_order_percentage
+        buy_total = 0
+        sell_total = 0
+        buy_order_total = 0
+        sell_order_total = 0
+
+        @today_orders.each do |order|
+            buy_total += 1 if order.order_type == "BUY"
+            sell_total += 1 if order.order_type == "SELL"
+        end        
+
+        @last_week_orders.each do |order|
+            buy_order_total += 1 if order.order_type == "BUY"
+            sell_order_total += 1 if order.order_type == "SELL"
+        end
+
+        @seven_day_buy_order_average = (buy_order_total / 7.0).to_f.round(2)        
+        @buy_order_percentage = (buy_total - @seven_day_buy_order_average) * 100
+
+        @seven_day_sell_order_average = (sell_order_total / 7.0).to_f.round(2)        
+        @sell_order_percentage = (sell_total - @seven_day_sell_order_average) * 100
     end
 end
