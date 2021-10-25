@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sidekiq-scheduler'
 require 'httparty'
 require 'active_support'

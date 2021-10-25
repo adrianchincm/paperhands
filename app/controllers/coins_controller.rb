@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'httparty'
 
 class CoinsController < ApplicationController
   def show
     get_current_holdings
-    get_coin_details    
+    get_coin_details
   end
 
   private
@@ -18,13 +20,13 @@ class CoinsController < ApplicationController
       "https://api.coingecko.com/api/v3/coins/#{coin.coin_id}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false"
 
     response = HTTParty.get(url)
-    coin_details = response.parsed_response    
+    coin_details = response.parsed_response
 
     @coin = coin_details
     market_data = @coin['market_data']
 
     Coin.update(
-      params[:id],      
+      params[:id],
       block_time_in_minutes: @coin['block_time_in_minutes'],
       sentiment_votes_up_percentage: @coin['sentiment_votes_up_percentage'],
       sentiment_votes_down_percentage: @coin['sentiment_votes_down_percentage'],

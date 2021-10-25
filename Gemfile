@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -27,14 +29,14 @@ gem 'redis', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'devise'
+gem 'figaro'
+gem 'font-awesome-rails'
+gem 'htmlbeautifier'
 gem 'httparty'
+gem 'prettier'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
-gem 'figaro'
-gem 'devise'
-gem 'font-awesome-rails'
-gem 'prettier'
-gem 'htmlbeautifier'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,8 +49,8 @@ group :development do
 
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'rack-mini-profiler', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -61,8 +63,8 @@ group :test do
   gem 'selenium-webdriver'
 
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
   gem 'sqlite3', '~> 1.4'
+  gem 'webdrivers'
 end
 
 group :production do

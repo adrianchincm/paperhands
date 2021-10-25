@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePortfolios < ActiveRecord::Migration[6.1]
   def change
     create_table :portfolios do |t|
@@ -5,8 +7,8 @@ class CreatePortfolios < ActiveRecord::Migration[6.1]
       t.integer :coin_id
       t.float :total_quantity
       t.float :total_cost
-      t.float :average_price      
-            
+      t.float :average_price
+
       t.timestamps
     end
   end
