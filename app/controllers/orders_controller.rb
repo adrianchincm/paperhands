@@ -10,7 +10,12 @@ class OrdersController < ApplicationController
     @today_buy_orders = get_buy_orders(@today_orders)
     @today_sell_orders = get_sell_orders(@today_orders)
     get_buy_order_percentage
-    puts "Last week order count : #{@last_week_orders.count}"
+    @options = get_coin_filters
+  end
+
+  def filter
+    @coin = Coin.find_by(coin_id: params[:id])
+    @orders = Order.where(user_id: current_user.id, coin_id: @coin.id)    
   end
 
   def create
@@ -38,6 +43,14 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def get_coin_filters
+    filter_list = []
+    @orders.each do |order| 
+      filter_list << {"name" => order.coin.name, "id" => order.coin.coin_id}
+    end
+    filter_list.uniq
+  end
 
   def modify_user_balance(params)
     price = params[:usdInput].to_f

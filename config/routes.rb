@@ -27,6 +27,7 @@ Rails
 
     resources :coins
     resources :orders
+    get 'orders/filter/:id', to: 'orders#filter'
     get 'portfolio', to: 'portfolios#index'
     get 'home/index'
     root to: 'home#index'

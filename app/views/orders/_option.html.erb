@@ -1,0 +1,2 @@
+<% index = option_counter + 1 %>
+<a href="/orders/filter/<%= option["id"] %>" class="block px-4 py-2 text-sm text-gray-700" :class="{ 'bg-gray-100 text-gray-900': activeIndex === <%= index %>, 'text-gray-700': !(activeIndex === <%= index %>) }" role="menuitem" tabindex="-1" id="menu-item-2" @mouseenter="activeIndex = <%= index %>" @mouseleave="activeIndex = -1" @click="open = false; focusButton()"><%= option["name"] %></a>

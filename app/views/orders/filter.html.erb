@@ -1,0 +1,7 @@
+<div class="relative w-8/12 text-2xl font-semibold mx-auto my-8">
+  <%= link_to "Back to Orders", orders_path, class: "text-indigo-600 font-semibold hover:underline cursor-pointer"%>
+  <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"> <%= @coin.name %> Orders </span>
+</div>
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-12">
+  <%= render @orders %>
+</div >
