@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
+
   def index
-    @orders = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id).order(created_at: :desc)
     @last_week_orders = Order.where(user_id: current_user.id, created_at: 1.week.ago..)
     @two_weeks_ago_count = Order.where(user_id: current_user.id, created_at: 1.week.ago..2.week.ago).count
     @today_orders = Order.where(user_id: current_user.id,
@@ -15,7 +16,7 @@ class OrdersController < ApplicationController
 
   def filter
     @coin = Coin.find_by(coin_id: params[:id])
-    @orders = Order.where(user_id: current_user.id, coin_id: @coin.id)    
+    @orders = Order.where(user_id: current_user.id, coin_id: @coin.id).order(created_at: :desc)    
   end
 
   def create
