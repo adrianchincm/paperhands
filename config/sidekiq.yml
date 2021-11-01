@@ -11,3 +11,7 @@ production:
   refresh_coin:
     every: 5s
     class: RefreshCoin
+  refresh_leaderboard:
+    every: 5s
+    class: RefreshLeaderboard
+  

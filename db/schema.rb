@@ -57,10 +57,11 @@ ActiveRecord::Schema.define(version: 2021_10_27_150431) do
     t.integer "user_id"
     t.float "total_cash"
     t.float "total_crypto"
-    t.float "total_profit_loss"
-    t.float "orders"
+    t.float "total_profit_loss_percentage"
+    t.integer "orders"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_leaderboards_on_user_id", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
