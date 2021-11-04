@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_150431) do
     t.float "total_cash"
     t.float "total_crypto"
     t.float "total_profit_loss_percentage"
+    t.float "total_net_worth"
     t.integer "orders"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

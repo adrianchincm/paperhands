@@ -29,6 +29,7 @@ Rails
     resources :orders
     get 'orders/filter/:id', to: 'orders#filter'
     get 'portfolio', to: 'portfolios#index'
+    get 'leaderboard', to: 'leaderboards#index'
     get 'home/index'
     root to: 'home#index'
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

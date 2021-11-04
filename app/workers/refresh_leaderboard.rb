@@ -20,13 +20,16 @@ class RefreshLeaderboard
           total_crypto += (portfolio.total_quantity * portfolio.coin.current_price)
           total_profit += (portfolio.total_quantity * portfolio.coin.current_price) - portfolio.total_cost          
         end
-        total_profit_loss_percentage = (total_profit / 1000000) * 100        
+        total_profit_loss_percentage = (total_profit / 1000000) * 100
+
+        total_net_worth = total_cash + total_crypto
 
         leaderboard_hash = {
           user_id: user.id.to_i,
           total_cash: total_cash,
           total_crypto: total_crypto,
-          total_profit_loss_percentage: total_profit_loss_percentage,          
+          total_profit_loss_percentage: total_profit_loss_percentage,
+          total_net_worth: total_net_worth,
           orders: total_orders
         }
 

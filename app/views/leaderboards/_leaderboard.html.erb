@@ -1,0 +1,27 @@
+<% index = leaderboard_counter + 1 %>
+<tr>
+    <td class="px-6 py-4 whitespace-nowrap">
+        <div class="text-sm text-gray-500"><%= index %></div>
+    </td>
+    
+    
+    <td class="px-6 py-4 whitespace-nowrap">        
+            <div class="text-sm text-gray-900"><%= leaderboard.user.first_name %> <%= leaderboard.user.last_name %></div>   
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap">        
+            <div class="text-sm text-gray-900"><%= number_to_currency(leaderboard.total_net_worth) %></div>
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap">        
+            <div class="text-sm text-gray-900"><%= number_to_currency(leaderboard.total_crypto) %></div>
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap">        
+            <div class="text-sm text-gray-900"><%= number_to_currency(leaderboard.total_cash) %></div>
+    </td>
+       
+    <td class="px-6 py-4 whitespace-nowrap">        
+            <div class="text-sm text-gray-900"><%= number_to_percentage(leaderboard.total_profit_loss_percentage) %></div>
+    </td>
+</tr>
