@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-
   def index
     @orders = Order.where(user_id: current_user.id).order(created_at: :desc)
     @last_week_orders = Order.where(user_id: current_user.id, created_at: 1.week.ago..)
@@ -16,7 +15,7 @@ class OrdersController < ApplicationController
 
   def filter
     @coin = Coin.find_by(coin_id: params[:id])
-    @orders = Order.where(user_id: current_user.id, coin_id: @coin.id).order(created_at: :desc)    
+    @orders = Order.where(user_id: current_user.id, coin_id: @coin.id).order(created_at: :desc)
   end
 
   def create
@@ -47,8 +46,8 @@ class OrdersController < ApplicationController
 
   def get_coin_filters
     filter_list = []
-    @orders.each do |order| 
-      filter_list << {"name" => order.coin.name, "id" => order.coin.coin_id}
+    @orders.each do |order|
+      filter_list << { 'name' => order.coin.name, 'id' => order.coin.coin_id }
     end
     filter_list.uniq
   end

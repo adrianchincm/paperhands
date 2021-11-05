@@ -10,8 +10,8 @@ class PortfoliosController < ApplicationController
     @portfolios = Portfolio.includes(:coin).where(user_id: current_user.id)
     @portfolios.each do |portfolio|
       @total_value += (portfolio.total_quantity * portfolio.coin.current_price)
-      @total_profit = @total_profit + (portfolio.total_quantity * portfolio.coin.current_price) - portfolio.total_cost      
+      @total_profit = @total_profit + (portfolio.total_quantity * portfolio.coin.current_price) - portfolio.total_cost
     end
-    @total_profit_percentage = (@total_profit / 1000000) * 100
+    @total_profit_percentage = (@total_profit / 1_000_000) * 100
   end
 end
