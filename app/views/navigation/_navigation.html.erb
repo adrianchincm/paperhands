@@ -23,7 +23,8 @@
           <% end %>
           <% if current_user %>
             <!-- Profile dropdown -->
-            <div x-data="{ open: false }" x-init="init()" @keydown.escape.stop="open = false;" @click.away="open = false;" class="ml-3 relative">
+            <div x-data="{ open: false }" x-init="init()" @keydown.escape.stop="open = false;" @click.away="open = false;" class="ml-3 relative flex items-center">
+              <div class="text-white mr-4"><%= current_user.first_name %> <%= current_user.last_name %></div>
               <div>
                 <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" x-ref="button" @click="open = ! open" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
                   <span class="sr-only">Open user menu</span>

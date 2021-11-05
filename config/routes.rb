@@ -29,6 +29,7 @@ Rails
     resources :orders
     get 'orders/filter/:id', to: 'orders#filter'
     get 'portfolio', to: 'portfolios#index'
+    get 'portfolio/:id', to: 'portfolios#show'
     get 'leaderboard', to: 'leaderboards#index'
     get 'home/index'
     root to: 'home#index'
